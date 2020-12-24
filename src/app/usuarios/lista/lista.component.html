@@ -1,4 +1,29 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row" *ngIf="loading">
+    <div class="col">
+        <div class="alert alert-info text-center">
+            <i class="fa fa-sync fa-spin fa-2x"></i>
+            <h1>Espere....</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="error">
+    <div class="col">
+        <div class="alert alert-warning text-center">
+            <i class="fa fa-times fa-2x"></i>
+            <h1>Error: {{error.status}}</h1>
+            <p>
+                {{error.message}}
+                <br>
+                <br> {{error.url}}
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="!loading&&!error">
     <div class="col" *ngFor="let user of usuarios">
         <div class="card">
             <img [src]="user.avatar" class="card-img-top" alt="{{user.avatar}}">
